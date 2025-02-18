@@ -1,1 +1,1 @@
-# -_LLM-Prompts
+# 数学建模常用prompts合集
