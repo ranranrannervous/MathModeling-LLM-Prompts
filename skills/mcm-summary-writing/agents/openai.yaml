@@ -1,0 +1,4 @@
+interface:
+  display_name: "美赛摘要写作"
+  short_description: "依据完整论文撰写美赛摘要，遵守逐题句式、克制文风与一页排版要求"
+  default_prompt: "使用 $mcm-summary-writing 根据完整论文撰写或修改摘要，遵守逐问题开头、第二句说明模型、专业克制文风，并在指定模板中检查一页排版。"

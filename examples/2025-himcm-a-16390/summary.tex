@@ -1,0 +1,127 @@
+% Layout test of a rewritten summary; not the original competition submission.
+% Template geometry and typography preserved; two instructional header lines removed.
+% Source study: 2025 HiMCM A, Team 16390. Rewritten English summary for layout testing.
+% !TeX program = xelatex
+% HiMCM/MidMCM 2026 LaTeX template
+% Summary page faithfully adapted from COMAP's official Word summary sheet.
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[a4paper,top=0.20in,bottom=0.50in,left=0.50in,right=0.50in]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{texgyretermes-regular.otf}[
+    BoldFont=texgyretermes-bold.otf,
+    ItalicFont=texgyretermes-italic.otf,
+    BoldItalicFont=texgyretermes-bolditalic.otf]}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\hypersetup{hidelinks}
+\setlength{\parindent}{0pt}
+
+% -----------------------------------------------------------------------------
+% Fill in these three fields before submission.
+% Do not write the school, advisor, or team members' names anywhere in the paper.
+% -----------------------------------------------------------------------------
+\newcommand{\TeamNumber}{16390}
+\newcommand{\ProblemChoice}{A}
+\newcommand{\CompetitionYear}{2025}
+
+% Keep this switch on while comparing the first page with the official Word file.
+% Change \ShowInstructionstrue to \ShowInstructionsfalse when writing the paper.
+\newif\ifShowInstructions
+\ShowInstructionsfalse
+
+% Used only after the red instructions have been hidden.
+\newcommand{\PaperTitle}{Risk-Aware Scheduling for Emergency Building Sweeps}
+\newcommand{\SummaryText}{%
+Emergency building sweeps require coordinated room inspections, responder assignments, and verification of high-risk areas. We seek to reduce total clearance time while maintaining full room coverage and the required verification procedures. The model combines \textbf{building topology, evolving hazards, and task scheduling} to evaluate sweep strategies across building layouts and emergency conditions.
+
+\textbf{For Problem 2,} we plan a sweep of a single-story, six-room building by two responders. We develop a \textbf{task allocation and route planning model based on a dynamic weighted graph} to minimize the latest responder completion time. Rooms, corridors, and exits form the graph, with travel costs updated to reflect smoke concentrations and responder fatigue; priorities combine intrinsic room risk with current smoke concentrations. A \textbf{risk-penalized Dijkstra algorithm and a priority-based greedy heuristic} assign high-risk rooms first, followed by verification by a different responder. In a scenario containing two high-risk laboratories, responders start at opposite exits and complete all inspections in \textbf{124.6~s}. The plan achieves \textbf{full primary coverage and verification of both laboratories}, with individual completion times of 114.6 and 124.6~s and a 15~s recheck of each laboratory.
+
+\textbf{For Problem 3,} we examine how building height, room use, and staffing affect sweep schedules. We develop a \textbf{multi-floor coordinated sweep scheduling model} by extending the baseline formulation. The model incorporates stair travel at half the horizontal movement speed, vertical smoke attenuation, and floor priorities, with verification requirements for daycare and chemical storage areas. A three-floor building with \textbf{12 rooms and four responders} requires \textbf{145.7~s}; a five-floor building with \textbf{18 rooms and six responders} requires \textbf{238.8~s}. The daycare receives its primary inspection by approximately 41.9~s; both scenarios complete all required high-risk verification tasks. In the three-floor case, the coefficient of variation of responder completion times reaches \textbf{24.5\%}, exceeding the 15\% target and indicating that verification timing can produce uneven workloads.
+
+\textbf{For Problem 4,} we assess communication degradation, occupant congestion, and real-time sensing. We develop a \textbf{dynamic scheduling model with communication and congestion constraints}. Communication reliability decays over time, and corridor occupancy changes travel speeds. Time-dependent fire and gas hazards also change room priorities, allowing the schedule to respond to evolving local conditions. The model switches to autonomous zone assignments when reliability drops below \textbf{70\%} and uses sensor data to update risk information. Under the simulated conditions, sensors reduce completion times for the single-story, three-floor, and five-floor scenarios to \textbf{103.2, 118.9, and 187.6~s}, respectively, corresponding to reductions of \textbf{17.2\%, 18.4\%, and 21.4\%}.
+
+Across \textbf{10 runs per strategy}, random assignment, nearest-neighbor routing, and equal partitioning yield mean completion times of 205.4, 222.0, and 209.6~s, respectively, all exceeding the proposed method's 124.6~s. Sensitivity analysis examines perturbations of \textbf{$\pm20\%$ in smoke diffusion parameters} and \textbf{$\pm15\%$ in movement speed}. Results assume uniform responder capabilities, intact building routes, and manually specified risk weights; practical use requires further calibration against building data and evacuation drills.
+}
+\newcommand{\Keywords}{emergency building sweeps; dynamic weighted graphs; route planning; task allocation; risk prioritization}
+
+\newcommand{\MakeSummarySheet}{%
+  \thispagestyle{empty}
+  \begingroup
+  \setlength{\parindent}{0pt}
+  \vspace*{-0.075in}
+  \begingroup
+    \centering
+    {\fontsize{10}{12}\selectfont Team Control Number\par}
+    \vspace{0.5pt}
+    {\color{red}\bfseries\fontsize{24}{26}\selectfont \TeamNumber\par}
+    \vspace{2.5pt}
+    {\fontsize{10}{12}\selectfont Problem Chosen\par}
+    \vspace{0.5pt}
+    {\color{red}\bfseries\fontsize{24}{26}\selectfont \ProblemChoice\par}
+    \vspace{3pt}
+    {\bfseries\fontsize{14}{16}\selectfont \CompetitionYear\par}
+    \vspace{1pt}
+    {\bfseries\fontsize{10}{12}\selectfont HiMCM/MidMCM\par}
+    {\bfseries\fontsize{10}{12}\selectfont Summary Sheet\par}
+  \endgroup
+
+  \ifShowInstructions
+    \vspace{6pt}
+    \begingroup
+      \color{red}
+      \fontsize{12}{14.4}\selectfont
+      \setlength{\parskip}{12.5pt}
+      Use this template to begin typing the first page (summary page) of your electronic report. This template uses\\
+      a 12-point Times New Roman font. Submit your paper as an Adobe PDF electronic file (e.g. 1111.pdf),\\
+      typed in English, with a readable font of at least 12-point type. Papers must be within the 25 page limit.
+
+      Do not include the name of your school, advisor, or team members on this or any page.
+
+      Be sure to change the control number and problem choice above.\\
+      You may delete these instructions as you begin to type your report here.
+    \endgroup
+  \else
+    \vspace{16pt}
+    \begin{center}
+      {\bfseries\fontsize{14}{17}\selectfont \PaperTitle\par}
+    \end{center}
+    \vspace{5pt}
+    \fontsize{12}{16}\selectfont
+    \setlength{\parindent}{0.25in}
+    \noindent\hspace*{\parindent}\SummaryText
+
+    \vspace{10pt}
+    \noindent\textbf{Keywords:} \Keywords
+  \fi
+  \endgroup
+}
+
+\newcommand{\StartMainPaper}{%
+  \clearpage
+  \newgeometry{top=0.72in,bottom=0.70in,left=0.75in,right=0.75in,
+               headheight=15pt,headsep=12pt}
+  \setcounter{page}{2}
+  \setlength{\parindent}{0.25in}
+  \setlength{\parskip}{0pt}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \lhead{Team \# \TeamNumber}
+  \rhead{Page \thepage\ of \pageref{LastPage}}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \fontsize{12}{16}\selectfont
+}
+
+\begin{document}
+\MakeSummarySheet
+\par
+\end{document}
